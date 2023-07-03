@@ -1,0 +1,31 @@
+@use '../sass/abstracts/' as *;
+
+.start-page {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--main-cl-4);
+  padding-top: 5rem;
+  h1,
+  div {
+    animation: show-menu 1s ease-out forwards;
+  }
+
+  .main-title {
+    color: var(--sub-cl-1);
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2.81rem;
+  }
+}
+@keyframes show-menu {
+  from {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
