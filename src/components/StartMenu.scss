@@ -3,7 +3,7 @@
   background-color: var(--sub-cl-1);
   padding: 2rem;
   border-radius: var(--el-radius);
-  width: clamp(20.4375rem, 50%, 40.875rem);
+  width: min(100%, 40.875rem);
 
   .options {
     .option-name {

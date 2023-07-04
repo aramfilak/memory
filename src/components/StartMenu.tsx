@@ -11,7 +11,7 @@ const gameOptions = {
 const StartMenu: React.FC = () => {
   const [selectedOptions, setSelectedOptions] = useState<Map<string, string | number>>(() => {
     const defaultOptions = new Map()
-    Object.entries(gameOptions).map(([key, value]) => {
+    Object.entries(gameOptions).forEach(([key, value]) => {
       defaultOptions.set(key, value[0])
     })
 

@@ -23,6 +23,9 @@ h1 {
   font-size: rem(20);
 }
 
+///////////////////
+////  BUTTONS   ///
+///////////////////
 .btn {
   text-align: center;
   font-weight: 700;
@@ -30,6 +33,8 @@ h1 {
   color: var(--sub-cl-1);
   border-radius: 2.1875rem;
   width: 100%;
+
+  // Large
   &.xl {
     height: 3rem;
     background-color: var(--main-cl-1);
@@ -42,7 +47,7 @@ h1 {
       height: 4.375rem;
     }
   }
-
+  // Medium
   &.md {
     width: 100%;
     height: 2.5rem;
@@ -61,20 +66,27 @@ h1 {
     background-color: var(--main-cl-3);
   }
 
+  // Small
   &.sm {
-    font-size: 1.25rem;
-  }
-  &.sm.primary {
-    background-color: var(--main-cl-1);
-    &:hover {
-      color: var(--main-cl-hv);
+    padding: 0.8rem 1.75rem;
+    font-size: 1rem;
+    width: fit-content;
+    @include mq(md) {
+      font-size: 1.25rem;
     }
-  }
+    &.primary {
+      background-color: var(--main-cl-1);
+      &:hover {
+        background-color: var(--main-cl-hv);
+      }
+    }
 
-  &.sm.secondary {
-    background-color: var(--main-cl-2);
-    &:hover {
-      color: var(-- --sub-cl-4);
+    &.secondary {
+      background-color: var(--main-cl-2);
+      color: var(--main-cl-4);
+      &:hover {
+        color: var(-- --sub-cl-4);
+      }
     }
   }
 }

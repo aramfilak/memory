@@ -1,11 +1,12 @@
 import './StartGame.scss'
 import React from 'react'
 import StartMenu from '../components/StartMenu'
+import { LogoLight } from '../assets/icons.tsx'
 
 const StartGame: React.FC = () => {
   return (
     <main className="start-page">
-      <h1 className="main-title">memory</h1>
+      <LogoLight />
       <StartMenu />
     </main>
   )
