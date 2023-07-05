@@ -15,7 +15,8 @@ function shuffleArray(array: Array<unknown>): Array<unknown> {
 
 function generateNumbersBoard(size: number): Array<number> {
   const array = []
-  for (let i = 0; i < size; i++) {
+
+  for (let i = 0; i < size / 2; i++) {
     array.push(i)
     array.push(i)
   }
@@ -23,4 +24,5 @@ function generateNumbersBoard(size: number): Array<number> {
 
   return array
 }
+
 export { shuffleArray, generateNumbersBoard }

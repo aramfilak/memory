@@ -3,7 +3,7 @@ import { create } from 'zustand'
 interface State {
   theme: string
   numberOfPlayers: number
-  gridSize: string
+  gridSize: number
 }
 
 interface Actions {
@@ -14,13 +14,23 @@ const useStartGame = create<State & Actions>((set) => {
   return {
     theme: '',
     numberOfPlayers: 0,
-    gridSize: '',
+    gridSize: 0,
 
     setRoundSettings: (currentRoundSettings: Map<string, string | number>) => {
+      let gridSizeVal = 0
+      switch (currentRoundSettings.get('Grid Size')) {
+        case '4x4':
+          gridSizeVal = 16
+          break
+        case '6x6':
+          gridSizeVal = 36
+          break
+      }
+
       set(() => ({
         theme: String(currentRoundSettings.get('Select Theme')),
         numberOfPlayers: Number(currentRoundSettings.get('Number of Players')),
-        gridSize: String(currentRoundSettings.get('Grid Size')),
+        gridSize: gridSizeVal,
       }))
     },
   }
