@@ -2,9 +2,9 @@ import './App.scss'
 import React from 'react'
 import StartGame from './pages/StartGame'
 import { Route, Routes } from 'react-router-dom'
-import SinglePlayer from './pages/SinglePlayer'
-import MultiplePlayers from './pages/MultiplePlayers'
-import GamePageHeader from './components/GamePageHeader'
+import SinglePlayer from './pages/game-pages/SinglePlayer'
+import MultiplePlayers from './pages/game-pages/MultiplePlayers'
+import GamePageHeader from './pages/game-pages/GamePageHeader'
 
 const App: React.FC = () => {
   return (

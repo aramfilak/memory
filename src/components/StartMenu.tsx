@@ -1,5 +1,7 @@
 import './StartMenu.scss'
 import React, { useState } from 'react'
+import useStartGame from '../store/useStartGame'
+import { useNavigate } from 'react-router-dom'
 
 // Dynamic options
 const gameOptions = {
@@ -9,6 +11,7 @@ const gameOptions = {
 }
 
 const StartMenu: React.FC = () => {
+  const navigate = useNavigate()
   const [selectedOptions, setSelectedOptions] = useState<Map<string, string | number>>(() => {
     const defaultOptions = new Map()
     Object.entries(gameOptions).forEach(([key, value]) => {
@@ -17,6 +20,8 @@ const StartMenu: React.FC = () => {
 
     return defaultOptions
   })
+
+  const { setRoundSettings } = useStartGame()
 
   const renderedOptions = Object.entries(gameOptions).map(([key, value]) => (
     <div key={key}>
@@ -44,7 +49,13 @@ const StartMenu: React.FC = () => {
   ))
 
   const handleStartGame = () => {
-    console.log('')
+    setRoundSettings(selectedOptions)
+
+    if (selectedOptions.get('Numbers of Players') === 1) {
+      navigate('/solo-round')
+    } else {
+      navigate('/multi-round')
+    }
   }
 
   return (
