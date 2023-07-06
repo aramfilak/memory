@@ -1,10 +1,13 @@
-@use '../../sass/abstracts/' as *;
+@use '../../../sass/abstracts/' as *;
 
 .container {
   width: min(100%, 70rem);
   padding-inline: 1rem;
-
+  height: 100vh;
   margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   .game-page-header {
     display: flex;
     justify-content: space-between;

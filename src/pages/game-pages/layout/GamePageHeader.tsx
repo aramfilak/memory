@@ -1,10 +1,11 @@
 import './GamePageHeader.scss'
 import React, { useState } from 'react'
 import { Outlet } from 'react-router-dom'
-import WindowModalWrapper from '../../components/WindowModalWrapper.tsx'
-
+import WindowModalWrapper from '../../../components/WindowModalWrapper.tsx'
+import { useNavigate } from 'react-router-dom'
 const GamePageHeader: React.FC = () => {
   const [closeModal, setCloseModal] = useState<boolean>(true)
+  const navigate = useNavigate()
   return (
     <>
       <div className="container">
@@ -38,7 +39,7 @@ const GamePageHeader: React.FC = () => {
             <button type="button" className="btn sm primary">
               Restart
             </button>
-            <button type="button" className="btn  sm secondary">
+            <button type="button" className="btn  sm secondary" onClick={() => navigate('/')}>
               New Game
             </button>
           </nav>

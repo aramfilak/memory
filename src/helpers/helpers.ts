@@ -13,7 +13,7 @@ function shuffleArray(array: Array<unknown>): Array<unknown> {
   return array
 }
 
-function generateNumbersBoard(size: number): Array<number> {
+function generateNumbersGrid(size: number): Array<number> {
   const array = []
 
   for (let i = 0; i < size / 2; i++) {
@@ -25,4 +25,4 @@ function generateNumbersBoard(size: number): Array<number> {
   return array
 }
 
-export { shuffleArray, generateNumbersBoard }
+export { shuffleArray, generateNumbersGrid }

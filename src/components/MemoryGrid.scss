@@ -2,6 +2,7 @@
 .memory-grid {
   display: grid;
   width: 20rem;
+  justify-content: center;
   margin: 5rem auto 6rem;
 
   @include mq(md) {
@@ -20,6 +21,7 @@
   }
 
   .grid-cell {
+    cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -41,18 +43,21 @@
       width: 2.92988rem;
       height: 2.92988rem;
     }
+    &.show {
+      pointer-events: none;
+    }
     &.show::before {
-      transform: translateY(-100%);
+      transform: translateY(-101%);
     }
     &.show::after {
-      transform: translateY(100%);
+      transform: translateY(101%);
     }
 
     &::before,
     &::after {
       content: '';
       width: 100%;
-      height: 50%;
+      height: 51%;
       transition: all 0.5s ease;
       background-color: var(--main-cl-3);
       position: absolute;
