@@ -1,12 +1,41 @@
 @use '../sass/abstracts/' as *;
 
-.start-page {
+.menu-wrapper {
   display: flex;
   align-items: center;
   flex-direction: column;
   min-height: 100vh;
   background-color: var(--main-cl-4);
   padding: 5rem 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+
+  @keyframes hidden {
+    from {
+    }
+    to {
+      transform: translateY(-100%);
+    }
+  }
+  @keyframes visible {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0%);
+    }
+  }
+
+  &.hidden {
+    animation: hidden 0.8s ease-out forwards;
+  }
+  &.visible {
+    animation: visible 0.8s ease-out forwards;
+  }
+
   h1,
   div {
     animation: show-menu 1s ease-out forwards;

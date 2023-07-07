@@ -1,44 +1,25 @@
 import './MemoryGrid.scss'
 import React, { useEffect, useState } from 'react'
-import { generateNumbersGrid } from '../helpers/helpers'
+import { generateIconsGrid, generateNumbersGrid } from '../helpers/helpers'
+import useStartMenuOptions from '../store/useStartMenuOptions'
 
-interface Props {
-  gridSize: number
-  theme: string
-  multiMode: boolean
-}
+const MemoryGrid: React.FC = () => {
+  const { gridSize, gridTheme } = useStartMenuOptions()
+  const [gridCells, setGridCells] = useState<React.ReactNode[] | number[]>([])
 
-const MemoryGrid: React.FC<Props> = ({ gridSize, theme, multiMode }) => {
-  const [numberGrid] = useState<number[]>(generateNumbersGrid(gridSize))
-  const [showCell, setShowCell] = useState<number>()
-  const [visitedCell, setVisitedCell] = useState<number>(-1)
-  const [complicatedCells, setComplicatedCells] = useState<Set<number>>()
-
-  const handleCellClick = (cellID: number, cellValue: number) => {
-    setShowCell(cellID)
-
-    if (visitedCell === -1) {
-      setVisitedCell(cellValue)
-    } else if (visitedCell === cellValue) {
-      const newSet = new Set<number>(complicatedCells)
-      newSet.add(cellValue)
-      setComplicatedCells(newSet)
-    } else {
-      setVisitedCell(-1)
+  useEffect(() => {
+    if (gridTheme === 'NUMBERS') {
+      setGridCells(generateNumbersGrid(gridSize))
+    } else if (gridTheme === 'ICONS') {
+      setGridCells(generateIconsGrid(gridSize))
     }
-  }
+  }, [gridSize, gridTheme])
 
-  const generatedNumberGrid = numberGrid.map((cellValue, cellID) => {
+  const generatedNumberGrid = gridCells.map((cellValue, index) => {
     return (
-      <div
-        key={cellID}
-        className={`grid-cell  size__${gridSize} ${
-          showCell === cellID || complicatedCells?.has(cellValue) ? 'show' : ''
-        }`}
-        onClick={() => handleCellClick(cellID, cellValue)}
-      >
-        {cellValue}
-      </div>
+      <React.Fragment key={index}>
+        <div className={`grid-cell  show  size__${gridSize}`}>{cellValue}</div>
+      </React.Fragment>
     )
   })
 

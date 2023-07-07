@@ -1,11 +1,11 @@
-import './GamePageHeader.scss'
+import './GamePageBody.scss'
 import React, { useState } from 'react'
-import { Outlet } from 'react-router-dom'
 import WindowModalWrapper from '../../../components/WindowModalWrapper.tsx'
-import { useNavigate } from 'react-router-dom'
-const GamePageHeader: React.FC = () => {
+import MemoryGrid from '../../../components/MemoryGrid.tsx'
+import useStartMenuOptions from '../../../store/useStartMenuOptions.tsx'
+const GamePageBody: React.FC = () => {
   const [closeModal, setCloseModal] = useState<boolean>(true)
-  const navigate = useNavigate()
+  const { setMenuVisibility } = useStartMenuOptions()
   return (
     <>
       <div className="container">
@@ -23,13 +23,20 @@ const GamePageHeader: React.FC = () => {
               <button type="button" className="btn sm primary">
                 Restart
               </button>
-              <button type="button" className="btn sm secondary">
+              <button
+                type="button"
+                className="btn sm secondary"
+                onClick={() => {
+                  setMenuVisibility(true)
+                  setCloseModal(true)
+                }}
+              >
                 New Game
               </button>
               <button
                 type="button"
                 className="btn sm secondary"
-                onClick={() => setCloseModal(!closeModal)}
+                onClick={() => setCloseModal(true)}
               >
                 Resume Game
               </button>
@@ -39,15 +46,19 @@ const GamePageHeader: React.FC = () => {
             <button type="button" className="btn sm primary">
               Restart
             </button>
-            <button type="button" className="btn  sm secondary" onClick={() => navigate('/')}>
+            <button
+              type="button"
+              className="btn  sm secondary"
+              onClick={() => setMenuVisibility(true)}
+            >
               New Game
             </button>
           </nav>
         </header>
-        <Outlet />
+        <MemoryGrid />
       </div>
     </>
   )
 }
 
-export default GamePageHeader
+export default GamePageBody
