@@ -29,7 +29,13 @@ const StartMenu: React.FC = () => {
         />
       </div>
 
-      <button className="btn xl" type="button" onClick={() => setMenuVisibility(false)}>
+      <button
+        className="btn xl"
+        type="button"
+        onClick={() => {
+          setMenuVisibility(false)
+        }}
+      >
         Start Game
       </button>
     </div>

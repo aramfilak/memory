@@ -8,55 +8,49 @@ const GamePageBody: React.FC = () => {
   const { setMenuVisibility } = useStartMenuOptions()
   return (
     <>
-      <div className="container">
-        <header className="game-page-header">
-          <h1 className="logo">memory</h1>
-          <nav className="mobile-nav">
-            <button
-              type="button"
-              className="btn sm primary"
-              onClick={() => setCloseModal(!closeModal)}
-            >
-              Menu
-            </button>
-            <WindowModalWrapper close={closeModal}>
-              <button type="button" className="btn sm primary">
-                Restart
-              </button>
-              <button
-                type="button"
-                className="btn sm secondary"
-                onClick={() => {
-                  setMenuVisibility(true)
-                  setCloseModal(true)
-                }}
-              >
-                New Game
-              </button>
-              <button
-                type="button"
-                className="btn sm secondary"
-                onClick={() => setCloseModal(true)}
-              >
-                Resume Game
-              </button>
-            </WindowModalWrapper>
-          </nav>
-          <nav className="tab-desk-nav">
+      <header className="game-page-header">
+        <h1 className="logo">memory</h1>
+        <nav className="mobile-nav">
+          <button
+            type="button"
+            className="btn sm primary"
+            onClick={() => setCloseModal(!closeModal)}
+          >
+            Menu
+          </button>
+          <WindowModalWrapper close={closeModal}>
             <button type="button" className="btn sm primary">
               Restart
             </button>
             <button
               type="button"
-              className="btn  sm secondary"
-              onClick={() => setMenuVisibility(true)}
+              className="btn sm secondary"
+              onClick={() => {
+                setMenuVisibility(true)
+                setCloseModal(true)
+              }}
             >
               New Game
             </button>
-          </nav>
-        </header>
-        <MemoryGrid />
-      </div>
+            <button type="button" className="btn sm secondary" onClick={() => setCloseModal(true)}>
+              Resume Game
+            </button>
+          </WindowModalWrapper>
+        </nav>
+        <nav className="tab-desk-nav">
+          <button type="button" className="btn sm primary">
+            Restart
+          </button>
+          <button
+            type="button"
+            className="btn  sm secondary"
+            onClick={() => setMenuVisibility(true)}
+          >
+            New Game
+          </button>
+        </nav>
+      </header>
+      <MemoryGrid />
     </>
   )
 }

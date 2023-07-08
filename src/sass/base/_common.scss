@@ -90,3 +90,15 @@ h1 {
     }
   }
 }
+///////////////////
+////  CONTAINER   ///
+///////////////////
+.container {
+  width: min(100%, 70rem);
+  padding-inline: 1rem;
+  height: 100%;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

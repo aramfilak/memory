@@ -4,7 +4,7 @@
   width: 20rem;
   justify-content: center;
   margin: 5rem auto 6rem;
-
+  transition: all 0.8s;
   @include mq(md) {
     width: 38rem;
   }
@@ -21,6 +21,7 @@
   }
 
   .grid-cell {
+    transition: all 0.5s;
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -67,6 +68,7 @@
     }
     &.show {
       pointer-events: none;
+      transform: scale(1.1);
     }
     &.show::before {
       transform: translateY(-101%);

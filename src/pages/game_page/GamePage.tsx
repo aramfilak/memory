@@ -7,8 +7,10 @@ const GamePage: React.FC = () => {
   const { isSoloRound } = useStartMenuOptions()
   return (
     <div className="game-page">
-      <GamePageBody />
-      {isSoloRound ? <SoloRoundFooter /> : <MultiRoundFooter />}
+      <div className="container">
+        <GamePageBody />
+        {isSoloRound ? <SoloRoundFooter /> : <MultiRoundFooter />}
+      </div>
     </div>
   )
 }

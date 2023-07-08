@@ -1,37 +1,28 @@
 @use '../../../sass/abstracts/' as *;
 
-.container {
-  width: min(100%, 70rem);
-  padding-inline: 1rem;
-  height: 100%;
-  margin-inline: auto;
+.game-page-header {
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  .game-page-header {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 1.5rem;
-    .logo {
-      color: var(--main-cl-4);
-      font-size: 1.5rem;
-      @include mq(md) {
-        font-size: 2.5rem;
-      }
+  padding-top: 1.5rem;
+  .logo {
+    color: var(--main-cl-4);
+    font-size: 1.5rem;
+    @include mq(md) {
+      font-size: 2.5rem;
     }
-    .mobile-nav {
-      @include mq(md) {
-        display: none;
-      }
-    }
-
-    .tab-desk-nav {
+  }
+  .mobile-nav {
+    @include mq(md) {
       display: none;
+    }
+  }
 
-      @include mq(md) {
-        display: flex;
-        gap: 1rem;
-      }
+  .tab-desk-nav {
+    display: none;
+
+    @include mq(md) {
+      display: flex;
+      gap: 1rem;
     }
   }
 }

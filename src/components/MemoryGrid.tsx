@@ -2,28 +2,39 @@ import './MemoryGrid.scss'
 import React, { useEffect, useState } from 'react'
 import { generateIconsGrid, generateNumbersGrid } from '../helpers/helpers'
 import useStartMenuOptions from '../store/useStartMenuOptions'
-
+import useRoundData from '../store/useRoundData'
 const NUMBERS = 'NUMBERS'
 const ICONS = 'ICONS'
 const MemoryGrid: React.FC = () => {
-  const { gridSize, gridTheme } = useStartMenuOptions()
+  const { setGameIsStarted, setGameIsFinished, incrementSoloPlyerMoves, resetRoundData } =
+    useRoundData()
+  const { gridSize, gridTheme, visibleMenu, isSoloRound } = useStartMenuOptions()
   const [gridCells, setGridCells] = useState<React.ReactNode[] | number[]>([])
   const [clickedCells, setClickedCells] = useState<Set<number>>(new Set())
   const [clickedCellsValues, setClickedCellsValues] = useState<Array<number>>([])
   const [completedCells, setCompletedCells] = useState<Set<number | string>>(new Set())
+
+  const RestBoard = () => {
+    setClickedCells(new Set())
+    setClickedCellsValues([])
+    setCompletedCells(new Set())
+    resetRoundData()
+  }
   useEffect(() => {
+    RestBoard()
     if (gridTheme === NUMBERS) {
       setGridCells(generateNumbersGrid(gridSize))
     } else if (gridTheme === ICONS) {
       setGridCells(generateIconsGrid(gridSize))
     }
-  }, [gridSize, gridTheme])
+  }, [visibleMenu])
 
   useEffect(() => {
     let timerID: ReturnType<typeof setTimeout> | null = null
+
     const cell1 = clickedCellsValues[0]
     const cell2 = clickedCellsValues[1]
-    console.log(completedCells)
+
     if (clickedCells.size === 2) {
       timerID = setTimeout(() => {
         if (cell1 === cell2) {
@@ -34,16 +45,27 @@ const MemoryGrid: React.FC = () => {
         setClickedCellsValues([])
       }, 900)
     }
+
     return () => {
       if (timerID) clearTimeout(timerID)
     }
   }, [clickedCellsValues, clickedCells, completedCells])
+
+  useEffect(() => {
+    if (completedCells.size === gridSize) {
+      setGameIsFinished(true)
+    }
+  }, [completedCells])
 
   const handleCellClick = (cellValue: number, cellIndex: number) => {
     if (clickedCells.size < 2) {
       setClickedCells(new Set(clickedCells).add(cellIndex))
       setClickedCellsValues([...clickedCellsValues, cellValue])
     }
+    if (isSoloRound) {
+      incrementSoloPlyerMoves()
+    }
+    setGameIsStarted(true)
   }
 
   const generatedNumberGrid = gridCells.map((cellValue, cellIndex) => {

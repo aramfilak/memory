@@ -17,11 +17,11 @@ interface Actions {
 
 const useStartMenuOptions = create<State & Actions>((set) => ({
   visibleMenu: true,
-  gridTheme: '',
-  numberOfPlayers: 0,
-  gridSize: 0,
-  isSoloRound: false,
-
+  gridTheme: 'numbers',
+  numberOfPlayers: 1,
+  gridSize: 16,
+  isSoloRound: true,
+  resetGrid: false,
   setMenuVisibility: (val: boolean) => {
     set(() => ({
       visibleMenu: val,
