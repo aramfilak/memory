@@ -11,7 +11,6 @@ const MemoryGrid: React.FC = () => {
   const [clickedCells, setClickedCells] = useState<Set<number>>(new Set())
   const [clickedCellsValues, setClickedCellsValues] = useState<Array<number>>([])
   const [completedCells, setCompletedCells] = useState<Set<number | string>>(new Set())
-
   useEffect(() => {
     if (gridTheme === NUMBERS) {
       setGridCells(generateNumbersGrid(gridSize))
@@ -19,16 +18,24 @@ const MemoryGrid: React.FC = () => {
       setGridCells(generateIconsGrid(gridSize))
     }
   }, [gridSize, gridTheme])
+
   useEffect(() => {
+    let timerID: ReturnType<typeof setTimeout> | null = null
+    const cell1 = clickedCellsValues[0]
+    const cell2 = clickedCellsValues[1]
+    console.log(completedCells)
     if (clickedCells.size === 2) {
-      setTimeout(() => {
-        if (clickedCellsValues[0] === clickedCellsValues[1]) {
-          setCompletedCells(new Set(completedCells).add(clickedCellsValues[0]))
+      timerID = setTimeout(() => {
+        if (cell1 === cell2) {
+          setCompletedCells(new Set(completedCells).add(cell1))
         }
         // Reset
         setClickedCells(new Set())
         setClickedCellsValues([])
-      }, 1000)
+      }, 900)
+    }
+    return () => {
+      if (timerID) clearTimeout(timerID)
     }
   }, [clickedCellsValues, clickedCells, completedCells])
 
@@ -46,7 +53,7 @@ const MemoryGrid: React.FC = () => {
     return (
       <div
         key={cellIndex}
-        className={`grid-cell  size__${gridSize} ${
+        className={`grid-cell  size__${gridSize} ${completedCells.has(cellVal) ? 'correct' : ''} ${
           clickedCells.has(cellIndex) || completedCells?.has(cellVal) ? 'show' : ''
         }`}
         onClick={() => handleCellClick(cellVal, cellIndex)}

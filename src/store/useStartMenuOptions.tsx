@@ -5,6 +5,7 @@ interface State {
   numberOfPlayers: number
   gridSize: number
   visibleMenu: boolean
+  isSoloRound: boolean
 }
 
 interface Actions {
@@ -19,6 +20,7 @@ const useStartMenuOptions = create<State & Actions>((set) => ({
   gridTheme: '',
   numberOfPlayers: 0,
   gridSize: 0,
+  isSoloRound: false,
 
   setMenuVisibility: (val: boolean) => {
     set(() => ({
@@ -33,6 +35,7 @@ const useStartMenuOptions = create<State & Actions>((set) => ({
   setNumberOfPlyers: (val: number) => {
     set(() => ({
       numberOfPlayers: val,
+      isSoloRound: val === 1,
     }))
   },
   setGridSize: (val: number) => {

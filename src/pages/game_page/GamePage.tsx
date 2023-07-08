@@ -4,11 +4,11 @@ import MultiRoundFooter from './layout/MultiRoundFooter'
 import GamePageBody from './layout/GamePageBody'
 import useStartMenuOptions from '../../store/useStartMenuOptions'
 const GamePage: React.FC = () => {
-  const { numberOfPlayers } = useStartMenuOptions()
+  const { isSoloRound } = useStartMenuOptions()
   return (
     <div className="game-page">
       <GamePageBody />
-      {numberOfPlayers === 1 ? <SoloRoundFooter /> : <MultiRoundFooter />}
+      {isSoloRound ? <SoloRoundFooter /> : <MultiRoundFooter />}
     </div>
   )
 }

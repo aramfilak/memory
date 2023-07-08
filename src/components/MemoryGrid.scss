@@ -32,7 +32,7 @@
     color: var(--sub-cl-1);
     position: relative;
     overflow: hidden;
-    transition: all 0.8s ease-out;
+    // transition: all 0.8s ease-out;
 
     &.size__16 {
       width: 4.53313rem;
@@ -43,7 +43,28 @@
       width: 2.92988rem;
       height: 2.92988rem;
     }
-
+    @keyframes correct-answer {
+      0%,
+      20%,
+      40%,
+      60%,
+      80%,
+      100% {
+        background-color: var(--main-cl-2);
+        transform: scale(1);
+      }
+      10%,
+      30%,
+      50%,
+      70%,
+      90% {
+        background-color: var(--main-cl-1);
+        transform: scale(1.1);
+      }
+    }
+    &.correct {
+      animation: correct-answer 3s linear;
+    }
     &.show {
       pointer-events: none;
     }
