@@ -3,9 +3,12 @@ import React, { useState } from 'react'
 import WindowModalWrapper from '../../../components/WindowModalWrapper.tsx'
 import MemoryGrid from '../../../components/MemoryGrid.tsx'
 import useStartMenuOptions from '../../../store/useStartMenuOptions.tsx'
+import useRoundData from '../../../store/useRoundData.tsx'
 const GamePageBody: React.FC = () => {
   const [closeModal, setCloseModal] = useState<boolean>(true)
   const { setMenuVisibility } = useStartMenuOptions()
+  const { restartGame } = useRoundData()
+
   return (
     <>
       <header className="game-page-header">
@@ -19,7 +22,14 @@ const GamePageBody: React.FC = () => {
             Menu
           </button>
           <WindowModalWrapper close={closeModal}>
-            <button type="button" className="btn sm primary">
+            <button
+              type="button"
+              className="btn sm primary"
+              onClick={() => {
+                restartGame()
+                setCloseModal(!closeModal)
+              }}
+            >
               Restart
             </button>
             <button
@@ -38,7 +48,7 @@ const GamePageBody: React.FC = () => {
           </WindowModalWrapper>
         </nav>
         <nav className="tab-desk-nav">
-          <button type="button" className="btn sm primary">
+          <button type="button" className="btn sm primary" onClick={() => restartGame()}>
             Restart
           </button>
           <button

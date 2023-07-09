@@ -4,7 +4,8 @@ import useRoundData from '../../../store/useRoundData'
 import useStartMenuOptions from '../../../store/useStartMenuOptions'
 const SoloRoundFooter: React.FC = () => {
   const { visibleMenu } = useStartMenuOptions()
-  const { setSoloPlyerTimeElapsed, gameIsStarted, gameIsFinished, soloPlyerScores } = useRoundData()
+  const { restart, setSoloPlyerTimeElapsed, gameIsStarted, gameIsFinished, soloPlyerScores } =
+    useRoundData()
   const [seconds, setSeconds] = useState<number>(0)
   const [minutes, setMinutes] = useState<number>(0)
 
@@ -17,10 +18,10 @@ const SoloRoundFooter: React.FC = () => {
 
   useEffect(() => {
     ResetFooter()
-  }, [visibleMenu])
+  }, [visibleMenu, restart])
 
   useEffect(() => {
-    if (gameIsStarted) {
+    if (gameIsStarted && !gameIsFinished) {
       const intervalId = setInterval(() => {
         if (seconds === 59) {
           setSeconds(() => 0)

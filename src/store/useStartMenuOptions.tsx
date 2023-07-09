@@ -22,6 +22,7 @@ const useStartMenuOptions = create<State & Actions>((set) => ({
   gridSize: 16,
   isSoloRound: true,
   resetGrid: false,
+
   setMenuVisibility: (val: boolean) => {
     set(() => ({
       visibleMenu: val,

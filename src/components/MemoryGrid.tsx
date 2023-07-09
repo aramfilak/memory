@@ -12,9 +12,10 @@ const MemoryGrid: React.FC = () => {
     incrementSoloPlyerMoves,
     resetRoundData,
     updateCurrentPlyer,
-    updatePlyerMoves,
-    updatePlyerPairsScore,
+    updateMultiPlyerMoves,
+    updateMultiPlyerPairsScore,
     currentPlyer,
+    restart,
   } = useRoundData()
   const { gridSize, gridTheme, numberOfPlayers, visibleMenu, isSoloRound } = useStartMenuOptions()
   const [gridCells, setGridCells] = useState<React.ReactNode[] | number[]>([])
@@ -35,7 +36,7 @@ const MemoryGrid: React.FC = () => {
     } else if (gridTheme === ICONS) {
       setGridCells(generateIconsGrid(gridSize))
     }
-  }, [visibleMenu])
+  }, [visibleMenu, restart])
 
   useEffect(() => {
     let timerID: ReturnType<typeof setTimeout> | null = null
@@ -47,10 +48,10 @@ const MemoryGrid: React.FC = () => {
       timerID = setTimeout(() => {
         if (cell1 === cell2) {
           setCompletedCells(new Set(completedCells).add(cell1))
-          updatePlyerPairsScore(currentPlyer)
+          updateMultiPlyerPairsScore(currentPlyer)
         } else {
           updateCurrentPlyer(numberOfPlayers)
-          updatePlyerMoves(currentPlyer)
+          updateMultiPlyerMoves(currentPlyer)
         }
         // Reset
         setClickedCells(new Set())
@@ -68,7 +69,7 @@ const MemoryGrid: React.FC = () => {
   }, [clickedCellsValues, clickedCells, completedCells])
 
   useEffect(() => {
-    if (completedCells.size === gridSize) {
+    if (completedCells.size === gridSize / 2) {
       setGameIsFinished(true)
     }
   }, [completedCells])

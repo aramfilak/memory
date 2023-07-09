@@ -5,7 +5,7 @@ import useStartMenuOptions from '../../../store/useStartMenuOptions'
 import useRoundData from '../../../store/useRoundData'
 const MultiRoundFooter: React.FC = () => {
   const { numberOfPlayers } = useStartMenuOptions()
-  const { currentPlyer, plyersScores } = useRoundData()
+  const { currentPlyer, multiPlyersScores } = useRoundData()
   const { isMobile } = useIsMobile()
 
   const playersInfos = () => {
@@ -14,7 +14,7 @@ const MultiRoundFooter: React.FC = () => {
       infos.push(
         <div className={`info ${plyerNo === currentPlyer ? 'active' : ''}`} key={plyerNo}>
           <span className="title">{`${isMobile ? 'P' : 'Player'} ${plyerNo}`}</span>
-          <span className="value">{plyersScores[plyerNo - 1].moves}</span>
+          <span className="value">{multiPlyersScores[plyerNo - 1].moves}</span>
           {!isMobile && plyerNo === currentPlyer && (
             <span className="current-turn">CURRENT TURN</span>
           )}
