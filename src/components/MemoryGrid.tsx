@@ -3,8 +3,10 @@ import React, { useEffect, useState } from 'react'
 import { generateIconsGrid, generateNumbersGrid } from '../helpers/helpers'
 import useStartMenuOptions from '../store/useStartMenuOptions'
 import useRoundData from '../store/useRoundData'
+
 const NUMBERS = 'NUMBERS'
 const ICONS = 'ICONS'
+
 const MemoryGrid: React.FC = () => {
   const {
     setGameIsStarted,
