@@ -6,8 +6,7 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 3rem;
-
+ 
   .info {
     background-color: var(--sub-cl-1);
     display: flex;
@@ -18,7 +17,7 @@
     padding: 0.6rem 1rem;
     border-radius: 0.625rem;
     max-width: 15.9375rem;
-
+    transition: all 0.8s ease-in-out;
     &.active {
       position: relative;
       background-color: var(--main-cl-1);
@@ -26,9 +25,22 @@
       .value {
         color: var(--sub-cl-1);
       }
+
+      .current-turn {
+        width: 100%;
+        position: absolute;
+        bottom: -2rem;
+        left: 50%;
+        transform: translate(-50%);
+        color: var(--main-cl-4);
+        font-size: 0.8125rem;
+        font-weight: 700;
+        letter-spacing: 0.3125rem;
+        text-align: center;
+      }
+
       &::before {
         content: '';
-
         border-width: 30px;
         border-style: solid;
         border-color: transparent transparent var(--main-cl-1) transparent;
@@ -37,6 +49,7 @@
         transform: translateX(-50%);
         position: absolute;
         z-index: -1;
+
         @include mq(md) {
           top: -2.7rem;
         }

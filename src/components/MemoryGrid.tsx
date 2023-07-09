@@ -6,9 +6,17 @@ import useRoundData from '../store/useRoundData'
 const NUMBERS = 'NUMBERS'
 const ICONS = 'ICONS'
 const MemoryGrid: React.FC = () => {
-  const { setGameIsStarted, setGameIsFinished, incrementSoloPlyerMoves, resetRoundData } =
-    useRoundData()
-  const { gridSize, gridTheme, visibleMenu, isSoloRound } = useStartMenuOptions()
+  const {
+    setGameIsStarted,
+    setGameIsFinished,
+    incrementSoloPlyerMoves,
+    resetRoundData,
+    updateCurrentPlyer,
+    updatePlyerMoves,
+    updatePlyerPairsScore,
+    currentPlyer,
+  } = useRoundData()
+  const { gridSize, gridTheme, numberOfPlayers, visibleMenu, isSoloRound } = useStartMenuOptions()
   const [gridCells, setGridCells] = useState<React.ReactNode[] | number[]>([])
   const [clickedCells, setClickedCells] = useState<Set<number>>(new Set())
   const [clickedCellsValues, setClickedCellsValues] = useState<Array<number>>([])
@@ -39,11 +47,19 @@ const MemoryGrid: React.FC = () => {
       timerID = setTimeout(() => {
         if (cell1 === cell2) {
           setCompletedCells(new Set(completedCells).add(cell1))
+          updatePlyerPairsScore(currentPlyer)
+        } else {
+          updateCurrentPlyer(numberOfPlayers)
+          updatePlyerMoves(currentPlyer)
         }
         // Reset
         setClickedCells(new Set())
         setClickedCellsValues([])
       }, 900)
+      // Update PlyerMoves
+      if (isSoloRound) {
+        incrementSoloPlyerMoves()
+      }
     }
 
     return () => {
@@ -61,9 +77,6 @@ const MemoryGrid: React.FC = () => {
     if (clickedCells.size < 2) {
       setClickedCells(new Set(clickedCells).add(cellIndex))
       setClickedCellsValues([...clickedCellsValues, cellValue])
-    }
-    if (isSoloRound) {
-      incrementSoloPlyerMoves()
     }
     setGameIsStarted(true)
   }
