@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-type PlyerScores = { playerNo: number; pairs: number; moves: number; winner: boolean }
+type PlyerScores = { playerNo: number; pairs: number; moves: number }
 
 interface SoloPlayerScores {
   moves: number
@@ -35,10 +35,10 @@ interface Actions {
 }
 
 const plyersInitialScore: PlyerScores[] = [
-  { playerNo: 1, pairs: 0, moves: 0, winner: false },
-  { playerNo: 2, pairs: 0, moves: 0, winner: false },
-  { playerNo: 3, pairs: 0, moves: 0, winner: false },
-  { playerNo: 4, pairs: 0, moves: 0, winner: false },
+  { playerNo: 1, pairs: 0, moves: 0 },
+  { playerNo: 2, pairs: 0, moves: 0 },
+  { playerNo: 3, pairs: 0, moves: 0 },
+  { playerNo: 4, pairs: 0, moves: 0 },
 ]
 
 const soloPlayerInitialScores: SoloPlayerScores = {
