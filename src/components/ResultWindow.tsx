@@ -16,14 +16,8 @@ const MultiMessage = {
 }
 
 const ResultWindow: React.FC = () => {
-  const {
-    gameIsFinished,
-    restartGame,
-    restart,
-    soloPlyerScores,
-    multiPlyersScores,
-    getMultiPlayerRoundResults,
-  } = useRoundData()
+  const { gameIsFinished, restartGame, restart, soloPlyerScores, getMultiPlayerRoundResults } =
+    useRoundData()
   const { visibleMenu, setMenuVisibility, isSoloRound, numberOfPlayers } = useStartMenuOptions()
   const [closeWindow, setCloseWindow] = useState<boolean>(true)
 
@@ -82,7 +76,7 @@ const ResultWindow: React.FC = () => {
     }
 
     return message
-  }, [multiPlyersScores, numberOfPlayers])
+  }, [gameIsFinished])
 
   return (
     <WindowModalWrapper close={closeWindow}>
