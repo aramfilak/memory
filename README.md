@@ -1,8 +1,6 @@
 ![Design preview for the Invoice app coding challenge](./preview.jpg)
 
-### [🔗 Go Live ](https://memory-game-chi-two.vercel.ap673456
-
-)
+### [🔗 Go Live ](https://memory-game-chi-two.vercel.ap673456)
 
 ### [🔗 Challenge Link](https://www.frontendmentor.io/challenges/memory-game-vse4WFPvM)
 
