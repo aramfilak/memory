@@ -11,6 +11,7 @@ const MenuOption: React.FC<Props> = ({ optionName, subOptionName, subOptionsValu
   const [activeOption, setActiveOption] = useState<number>()
 
   useEffect(() => {
+    // initialize default value
     setActiveOption(0)
     dispatch(subOptionsValues[0])
   }, [])
