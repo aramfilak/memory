@@ -6,6 +6,7 @@ import useRoundData from '../store/useRoundData'
 
 const NUMBERS = 'NUMBERS'
 const ICONS = 'ICONS'
+const TIMEOUT = 900
 
 const MemoryGrid: React.FC = () => {
   const {
@@ -25,14 +26,16 @@ const MemoryGrid: React.FC = () => {
   const [clickedCellsValues, setClickedCellsValues] = useState<Array<number>>([])
   const [completedCells, setCompletedCells] = useState<Set<number | string>>(new Set())
 
-  const RestBoard = () => {
+  const resetGrid = () => {
     setClickedCells(new Set())
     setClickedCellsValues([])
     setCompletedCells(new Set())
     resetRoundData()
   }
+
   useEffect(() => {
-    RestBoard()
+    resetGrid()
+
     if (gridTheme === NUMBERS) {
       setGridCells(generateNumbersGrid(gridSize))
     } else if (gridTheme === ICONS) {
@@ -58,23 +61,21 @@ const MemoryGrid: React.FC = () => {
         // Reset
         setClickedCells(new Set())
         setClickedCellsValues([])
-      }, 900)
+      }, TIMEOUT)
       // Update PlyerMoves
       if (isSoloRound) {
         incrementSoloPlyerMoves()
       }
     }
 
+    if (completedCells.size === gridSize / 2) {
+      setGameIsFinished(true)
+    }
+
     return () => {
       if (timerID) clearTimeout(timerID)
     }
   }, [clickedCellsValues, clickedCells, completedCells])
-
-  useEffect(() => {
-    if (completedCells.size === gridSize / 2) {
-      setGameIsFinished(true)
-    }
-  }, [completedCells])
 
   const handleCellClick = (cellValue: number, cellIndex: number) => {
     if (clickedCells.size < 2) {
