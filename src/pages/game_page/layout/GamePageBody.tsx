@@ -4,6 +4,7 @@ import WindowModalWrapper from '../../../components/WindowModalWrapper.tsx'
 import MemoryGrid from '../../../components/MemoryGrid.tsx'
 import useStartMenuOptions from '../../../store/useStartMenuOptions.tsx'
 import useRoundData from '../../../store/useRoundData.tsx'
+
 const GamePageBody: React.FC = () => {
   const [closeModal, setCloseModal] = useState<boolean>(true)
   const { setMenuVisibility } = useStartMenuOptions()

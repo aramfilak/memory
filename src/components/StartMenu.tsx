@@ -11,19 +11,19 @@ const StartMenu: React.FC = () => {
       <div className="options">
         <MenuOption
           optionName={'Select Theme'}
-          subOptionName={['Numbers', 'Icons']}
+          subOptionsName={['Numbers', 'Icons']}
           subOptionsValues={['NUMBERS', 'ICONS']}
           dispatch={setGridTheme}
         />
         <MenuOption
           optionName={'Number of Players'}
-          subOptionName={[1, 2, 3, 4]}
+          subOptionsName={[1, 2, 3, 4]}
           subOptionsValues={[1, 2, 3, 4]}
           dispatch={setNumberOfPlyers}
         />
         <MenuOption
           optionName={'Grid Size'}
-          subOptionName={['4x4', '6x6']}
+          subOptionsName={['4x4', '6x6']}
           subOptionsValues={[16, 36]}
           dispatch={setGridSize}
         />

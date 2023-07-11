@@ -62,7 +62,7 @@ const MemoryGrid: React.FC = () => {
         setClickedCells(new Set())
         setClickedCellsValues([])
       }, TIMEOUT)
-      // Update PlyerMoves
+
       if (isSoloRound) {
         incrementSoloPlyerMoves()
       }

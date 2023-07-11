@@ -50,28 +50,26 @@ const ResultWindow: React.FC = () => {
     const message: React.JSX.Element[] = []
     const { winners, multiPlyersScores } = getMultiPlayerRoundResults()
     message.push(
-      <>
+      <React.Fragment key={-1}>
         <h2 className="main-message">
           {winners.length > 1
             ? MultiMessage.tieMessage
             : MultiMessage.winMessage.replace('*', String(winners[0]))}
         </h2>
         <p className="sub-message">{MultiMessage.subMessage} </p>
-      </>
+      </React.Fragment>
     )
 
     for (let i = 0; i < numberOfPlayers; i++) {
       const playerScore = multiPlyersScores[i]
       const isWinner = winners.find((plyerNo) => plyerNo === playerScore.playerNo)
       message.push(
-        <>
-          <div className={`result-bar ${isWinner ? 'winner' : ''}`}>
-            <span className="title">{`Player ${playerScore.playerNo} ${
-              isWinner ? '(Winner!)' : ''
-            }`}</span>
-            <span className="value">{`${playerScore.pairs} Pairs`}</span>
-          </div>
-        </>
+        <div key={i} className={`result-bar ${isWinner ? 'winner' : ''}`}>
+          <span className="title">{`Player ${playerScore.playerNo} ${
+            isWinner ? '(Winner!)' : ''
+          }`}</span>
+          <span className="value">{`${playerScore.pairs} Pairs`}</span>
+        </div>
       )
     }
 

@@ -2,6 +2,7 @@ import './GamePageFooter.scss'
 import React, { useEffect, useState } from 'react'
 import useRoundData from '../../../store/useRoundData'
 import useStartMenuOptions from '../../../store/useStartMenuOptions'
+
 const SoloRoundFooter: React.FC = () => {
   const { visibleMenu } = useStartMenuOptions()
   const { restart, setSoloPlyerTimeElapsed, gameIsStarted, gameIsFinished, soloPlyerScores } =
@@ -30,6 +31,7 @@ const SoloRoundFooter: React.FC = () => {
           setSeconds((prvSec) => prvSec + 1)
         }
       }, 1000)
+
       return () => clearInterval(intervalId)
     }
     if (gameIsFinished) {

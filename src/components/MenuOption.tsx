@@ -3,11 +3,16 @@ import React, { useEffect, useState } from 'react'
 
 interface Props {
   optionName: string
-  subOptionName: Array<string | number>
+  subOptionsName: Array<string | number>
   subOptionsValues: Array<string | number>
   dispatch: (val: any) => any
 }
-const MenuOption: React.FC<Props> = ({ optionName, subOptionName, subOptionsValues, dispatch }) => {
+const MenuOption: React.FC<Props> = ({
+  optionName,
+  subOptionsName,
+  subOptionsValues,
+  dispatch,
+}) => {
   const [activeOption, setActiveOption] = useState<number>()
 
   useEffect(() => {
@@ -25,7 +30,7 @@ const MenuOption: React.FC<Props> = ({ optionName, subOptionName, subOptionsValu
     <div>
       <h3 className="option-name">{optionName}</h3>
       <ul className="sub-options">
-        {subOptionName.map((item, index) => (
+        {subOptionsName.map((item, index) => (
           <li key={index}>
             <button
               className={`btn md ${activeOption === index ? 'active' : ''}`}

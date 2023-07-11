@@ -3,6 +3,7 @@ import React from 'react'
 import useIsMobile from '../../../hooks/useIsMobile'
 import useStartMenuOptions from '../../../store/useStartMenuOptions'
 import useRoundData from '../../../store/useRoundData'
+
 const MultiRoundFooter: React.FC = () => {
   const { numberOfPlayers } = useStartMenuOptions()
   const { currentPlyer, multiPlyersScores } = useRoundData()
