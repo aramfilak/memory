@@ -24,6 +24,14 @@
         color: var(--sub-cl-1);
       }
 
+      @keyframes text-ani {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
       .current-turn {
         width: 100%;
         position: absolute;
@@ -35,6 +43,7 @@
         font-weight: 700;
         letter-spacing: 0.3125rem;
         text-align: center;
+        animation: text-ani 0.7s ease-out forwards;
       }
 
       @keyframes move-up {
