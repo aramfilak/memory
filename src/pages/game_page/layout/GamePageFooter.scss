@@ -73,11 +73,12 @@
       @keyframes fill-color {
         to {
           left: 0;
+          width: 100%;
         }
       }
       &:nth-child(1)::after {
-        left: -25%;
-        animation: fill-color 0.3s ease-out forwards;
+        width: 0%;
+        left: 0;
       }
       &::after {
         content: '';
