@@ -84,10 +84,10 @@ function generateIconsGrid(size: number): Array<JSX.Element> {
     <AiFillSkype />,
     <AiFillSkype />,
   ]
-  icons.push(...icons)
-  const array = icons.slice(0, size)
 
+  const array = icons.slice(0, size)
   shuffleArray(array)
+
   return array
 }
 
