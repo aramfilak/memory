@@ -117,7 +117,7 @@ const useRoundData = create<State & Actions>((set) => ({
       const playerIndex = playerNo - 1
       const updatedPlayer = {
         ...state.multiPlyersScores[playerIndex],
-        pairs: state.multiPlyersScores[playerIndex].pairs + 2,
+        pairs: state.multiPlyersScores[playerIndex].pairs + 1,
       }
       const updatedPlayersScores = [...state.multiPlyersScores]
       updatedPlayersScores[playerIndex] = updatedPlayer
