@@ -1,5 +1,4 @@
 import './StartMenu.scss';
-import React from 'react';
 import MenuOption from './MenuOption';
 import useStartMenuOptions from '../store/useStartMenuOptions';
 

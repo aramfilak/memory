@@ -1,5 +1,5 @@
 import './GamePageFooter.scss';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import useRoundData from '../../../store/useRoundData';
 import useStartMenuOptions from '../../../store/useStartMenuOptions';
 

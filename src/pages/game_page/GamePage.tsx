@@ -1,4 +1,3 @@
-import React from 'react';
 import SoloRoundFooter from './layout/SoloRoundFooter';
 import MultiRoundFooter from './layout/MultiRoundFooter';
 import GamePageBody from './layout/GamePageBody';
