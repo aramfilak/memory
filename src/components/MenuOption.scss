@@ -1,26 +1,26 @@
 @use '../sass/abstracts/' as *;
 
 .options {
-  .option-name {
-    color: va(--main-cl-3);
-    font-size: 0.9375rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    @include mq(md) {
-      font-size: 1.25rem;
+    .option-name {
+        color: va(--main-cl-3);
+        font-size: 0.9375rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        @include mq(md) {
+            font-size: 1.25rem;
+        }
     }
-  }
-  .sub-options {
-    display: flex;
-    justify-content: space-around;
-    gap: 0.7rem;
-    margin-bottom: 2rem;
-    li {
-      flex: 1;
-    }
+    .sub-options {
+        display: flex;
+        justify-content: space-around;
+        gap: 0.7rem;
+        margin-bottom: 2rem;
+        li {
+            flex: 1;
+        }
 
-    @include mq(md) {
-      gap: 1.2rem;
+        @include mq(md) {
+            gap: 1.2rem;
+        }
     }
-  }
 }

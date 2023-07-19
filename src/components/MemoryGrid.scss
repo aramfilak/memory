@@ -1,115 +1,115 @@
 @use '../sass/abstracts/' as *;
 
 .memory-grid {
-  display: grid;
-  width: 20rem;
-  justify-content: center;
-  margin: 5rem auto 6rem;
-  transition: all 0.8s;
-  @include mq(md) {
-    width: 38rem;
-  }
-  &.size__16 {
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-    gap: 1rem;
-  }
-
-  &.size__36 {
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(6, 1fr);
-    gap: 1rem;
-  }
-
-  .grid-cell {
-    transition: all 0.5s;
-    cursor: pointer;
-    display: flex;
+    display: grid;
+    width: 20rem;
     justify-content: center;
-    align-items: center;
-    background-color: var(--main-cl-2);
-    border-radius: 50%;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--sub-cl-1);
-    position: relative;
-    overflow: hidden;
-    // transition: all 0.8s ease-out;
-
+    margin: 5rem auto 6rem;
+    transition: all 0.8s;
+    @include mq(md) {
+        width: 38rem;
+    }
     &.size__16 {
-      width: 4.53313rem;
-      height: 4.53313rem;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        gap: 1rem;
     }
 
     &.size__36 {
-      width: 2.92988rem;
-      height: 2.92988rem;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(6, 1fr);
+        gap: 1rem;
     }
-    @keyframes correct-answer {
-      0%,
-      20%,
-      40%,
-      60%,
-      80%,
-      100% {
+
+    .grid-cell {
+        transition: all 0.5s;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         background-color: var(--main-cl-2);
-        transform: scale(1);
-      }
-      10%,
-      30%,
-      50%,
-      70%,
-      90% {
-        background-color: var(--main-cl-1);
-        transform: scale(1.1);
-      }
-    }
-    &.correct {
-      animation: correct-answer 3s linear forwards;
-    }
-    &.show {
-      pointer-events: none;
-      transform: scale(1.1);
-      background-color: var(--main-cl-1);
-    }
-    &.show::before {
-      transform: translateY(-101%);
-    }
-    &.show::after {
-      transform: translateY(101%);
-    }
+        border-radius: 50%;
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--sub-cl-1);
+        position: relative;
+        overflow: hidden;
+        // transition: all 0.8s ease-out;
 
-    &::before,
-    &::after {
-      content: '';
-      width: 100%;
-      height: 51%;
-      transition: all 0.5s ease;
-      background-color: var(--main-cl-3);
-      position: absolute;
-    }
+        &.size__16 {
+            width: 4.53313rem;
+            height: 4.53313rem;
+        }
 
-    &::before {
-      top: 0;
-      left: 0;
-    }
+        &.size__36 {
+            width: 2.92988rem;
+            height: 2.92988rem;
+        }
+        @keyframes correct-answer {
+            0%,
+            20%,
+            40%,
+            60%,
+            80%,
+            100% {
+                background-color: var(--main-cl-2);
+                transform: scale(1);
+            }
+            10%,
+            30%,
+            50%,
+            70%,
+            90% {
+                background-color: var(--main-cl-1);
+                transform: scale(1.1);
+            }
+        }
+        &.correct {
+            animation: correct-answer 3s linear forwards;
+        }
+        &.show {
+            pointer-events: none;
+            transform: scale(1.1);
+            background-color: var(--main-cl-1);
+        }
+        &.show::before {
+            transform: translateY(-101%);
+        }
+        &.show::after {
+            transform: translateY(101%);
+        }
 
-    &::after {
-      content: '';
-      bottom: 0;
-      left: 0;
-    }
-    @include mq(md) {
-      font-size: 2.5rem;
-      &.size__16 {
-        width: 7.375rem;
-        height: 7.375rem;
-      }
+        &::before,
+        &::after {
+            content: '';
+            width: 100%;
+            height: 51%;
+            transition: all 0.5s ease;
+            background-color: var(--main-cl-3);
+            position: absolute;
+        }
 
-      &.size__36 {
-        width: 5.125rem;
-        height: 5.125rem;
-      }
+        &::before {
+            top: 0;
+            left: 0;
+        }
+
+        &::after {
+            content: '';
+            bottom: 0;
+            left: 0;
+        }
+        @include mq(md) {
+            font-size: 2.5rem;
+            &.size__16 {
+                width: 7.375rem;
+                height: 7.375rem;
+            }
+
+            &.size__36 {
+                width: 5.125rem;
+                height: 5.125rem;
+            }
+        }
     }
-  }
 }
