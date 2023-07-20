@@ -5,27 +5,27 @@ import useStartMenuOptions from '../../../store/useStartMenuOptions';
 import useRoundData from '../../../store/useRoundData';
 
 function MultiRoundFooter() {
-    const { numberOfPlayers } = useStartMenuOptions();
-    const { currentPlyer, multiPlyersScores } = useRoundData();
-    const { isMobile } = useIsMobile();
+  const { numberOfPlayers } = useStartMenuOptions();
+  const { currentPlayer, multiPlayersScores } = useRoundData();
+  const { isMobile } = useIsMobile();
 
-    function playersInfos() {
-        const infos: Array<React.ReactNode> = [];
-        for (let plyerNo = 1; plyerNo <= numberOfPlayers; plyerNo++) {
-            infos.push(
-                <div className={`info ${plyerNo === currentPlyer ? 'active' : ''}`} key={plyerNo}>
-                    <span className="title">{`${isMobile ? 'P' : 'Player'} ${plyerNo}`}</span>
-                    <span className="value">{multiPlyersScores[plyerNo - 1].moves}</span>
-                    {!isMobile && plyerNo === currentPlyer && (
-                        <span className="current-turn">CURRENT TURN</span>
-                    )}
-                </div>
-            );
-        }
-        return infos;
+  function playersInfos() {
+    const infos: Array<React.ReactNode> = [];
+    for (let PlayerNo = 1; PlayerNo <= numberOfPlayers; PlayerNo++) {
+      infos.push(
+        <div className={`info ${PlayerNo === currentPlayer ? 'active' : ''}`} key={PlayerNo}>
+          <span className="title">{`${isMobile ? 'P' : 'Player'} ${PlayerNo}`}</span>
+          <span className="value">{multiPlayersScores[PlayerNo - 1].moves}</span>
+          {!isMobile && PlayerNo === currentPlayer && (
+            <span className="current-turn">CURRENT TURN</span>
+          )}
+        </div>
+      );
     }
+    return infos;
+  }
 
-    return <footer className="multi-round-footer">{playersInfos()}</footer>;
+  return <footer className="multi-round-footer">{playersInfos()}</footer>;
 }
 
 export default MultiRoundFooter;

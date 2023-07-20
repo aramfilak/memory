@@ -1,20 +1,18 @@
 import { useEffect, useState } from 'react';
 
 function useIsMobile(): { isMobile: boolean } {
-    const [isMobile, setIsMobile] = useState<boolean>(
-        window.matchMedia('(max-width: 48em)').matches
-    );
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.matchMedia('(max-width: 48em)').matches);
-        };
-        window.addEventListener('resize', handleResize);
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
+  const [isMobile, setIsMobile] = useState<boolean>(window.matchMedia('(max-width: 48em)').matches);
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.matchMedia('(max-width: 48em)').matches);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
-    return { isMobile };
+  return { isMobile };
 }
 
 export default useIsMobile;

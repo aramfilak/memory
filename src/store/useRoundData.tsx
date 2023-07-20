@@ -1,155 +1,160 @@
 import { create } from 'zustand';
 
-type PlyerScores = { playerNo: number; pairs: number; moves: number };
+type PlayerScores = { playerNo: number; pairs: number; moves: number };
 
 interface SoloPlayerScores {
-    moves: number;
-    timeElapsed: string;
+  moves: number;
+  timeElapsed: string;
 }
 
 interface RoundResults {
-    winners: number[];
-    multiPlyersScores: PlyerScores[];
+  winners: number[];
+  multiPlayersScores: PlayerScores[];
 }
-const plyersInitialScore: PlyerScores[] = [
-    { playerNo: 1, pairs: 0, moves: 0 },
-    { playerNo: 2, pairs: 0, moves: 0 },
-    { playerNo: 3, pairs: 0, moves: 0 },
-    { playerNo: 4, pairs: 0, moves: 0 },
+
+const PlayersInitialScore: PlayerScores[] = [
+  { playerNo: 1, pairs: 0, moves: 0 },
+  { playerNo: 2, pairs: 0, moves: 0 },
+  { playerNo: 3, pairs: 0, moves: 0 },
+  { playerNo: 4, pairs: 0, moves: 0 },
 ];
+
 const soloPlayerInitialScores: SoloPlayerScores = {
-    moves: 0,
-    timeElapsed: '',
+  moves: 0,
+  timeElapsed: '',
 };
 interface RoundData {
-    gameIsStarted: boolean;
-    gameIsFinished: boolean;
-    multiPlyersScores: PlyerScores[];
-    soloPlyerScores: SoloPlayerScores;
-    currentPlyer: number;
-    restart: boolean;
-    showResultWindow: boolean;
-    setGameIsStarted: (val: boolean) => void;
-    setGameIsFinished: (val: boolean) => void;
-    setSoloPlyerTimeElapsed: (timeElapsed: string) => void;
-    incrementSoloPlyerMoves: () => void;
-    resetRoundData: () => void;
-    updateCurrentPlyer: (numberOfPlayers: number) => void;
-    updateMultiPlyerMoves: (plyerNo: number) => void;
-    updateMultiPlyerPairsScore: (plyerNo: number) => void;
-    restartGame: () => void;
-    setShowResultWindow: (val: boolean) => void;
-    getMultiPlayerRoundResults: () => RoundResults;
+  gameIsStarted: boolean;
+  gameIsFinished: boolean;
+  multiPlayersScores: PlayerScores[];
+  soloPlayerScores: SoloPlayerScores;
+  currentPlayer: number;
+  restart: boolean;
+  showResultWindow: boolean;
+  setGameIsStarted: (val: boolean) => void;
+  setGameIsFinished: (val: boolean) => void;
+  setSoloPlayerTimeElapsed: (timeElapsed: string) => void;
+  incrementSoloPlayerMoves: () => void;
+  resetRoundData: () => void;
+  updateCurrentPlayer: (numberOfPlayers: number) => void;
+  updateMultiPlayerMoves: (PlayerNo: number) => void;
+  updateMultiPlayerPairsScore: (PlayerNo: number) => void;
+  restartGame: () => void;
+  setShowResultWindow: (val: boolean) => void;
+  getMultiPlayerRoundResults: () => RoundResults;
 }
 
 const useRoundData = create<RoundData>((set) => ({
-    gameIsStarted: false,
-    gameIsFinished: false,
-    multiPlyersScores: plyersInitialScore,
-    soloPlyerScores: soloPlayerInitialScores,
-    currentPlyer: 1,
-    restart: false,
-    showResultWindow: false,
+  gameIsStarted: false,
+  gameIsFinished: false,
+  multiPlayersScores: PlayersInitialScore,
+  soloPlayerScores: soloPlayerInitialScores,
+  currentPlayer: 1,
+  restart: false,
+  showResultWindow: false,
 
-    resetRoundData: () => {
-        set(() => ({
-            gameIsStarted: false,
-            gameIsFinished: false,
-            soloPlyerScores: soloPlayerInitialScores,
-            multiPlyersScores: plyersInitialScore,
-            currentPlyer: 1,
-            showResultWindow: false,
-        }));
-    },
-    restartGame: () => {
-        set((state) => ({
-            restart: !state.restart,
-        }));
-    },
-    updateCurrentPlyer: (numberOfPlayers: number) => {
-        set((state) => ({
-            currentPlyer: state.currentPlyer + 1 <= numberOfPlayers ? state.currentPlyer + 1 : 1,
-        }));
-    },
-    setGameIsStarted: (val: boolean) => {
-        set(() => ({
-            gameIsStarted: val,
-        }));
-    },
-    setGameIsFinished: (val: boolean) => {
-        set(() => ({
-            gameIsFinished: val,
-        }));
-    },
+  resetRoundData: () => {
+    set(() => ({
+      gameIsStarted: false,
+      gameIsFinished: false,
+      soloPlayerScores: soloPlayerInitialScores,
+      multiPlayersScores: PlayersInitialScore,
+      currentPlayer: 1,
+      showResultWindow: false,
+    }));
+  },
+  restartGame: () => {
+    set((state) => ({
+      restart: !state.restart,
+    }));
+  },
+  updateCurrentPlayer: (numberOfPlayers: number) => {
+    set((state) => ({
+      currentPlayer: state.currentPlayer + 1 <= numberOfPlayers ? state.currentPlayer + 1 : 1,
+    }));
+  },
+  setGameIsStarted: (val: boolean) => {
+    set(() => ({
+      gameIsStarted: val,
+    }));
+  },
+  setGameIsFinished: (val: boolean) => {
+    set(() => ({
+      gameIsFinished: val,
+    }));
+  },
 
-    setSoloPlyerTimeElapsed: (timeElapsed: string) => {
-        set((state) => ({
-            soloPlyerScores: { ...state.soloPlyerScores, timeElapsed },
-        }));
-    },
-    incrementSoloPlyerMoves: () => {
-        set((state) => ({
-            soloPlyerScores: { ...state.soloPlyerScores, moves: state.soloPlyerScores.moves + 1 },
-        }));
-    },
+  setSoloPlayerTimeElapsed: (timeElapsed: string) => {
+    set((state) => ({
+      soloPlayerScores: { ...state.soloPlayerScores, timeElapsed },
+    }));
+  },
+  incrementSoloPlayerMoves: () => {
+    set((state) => ({
+      soloPlayerScores: {
+        ...state.soloPlayerScores,
+        moves: state.soloPlayerScores.moves + 1,
+      },
+    }));
+  },
 
-    updateMultiPlyerMoves: (playerNo: number) => {
-        set((state) => {
-            const playerIndex = playerNo - 1;
-            const updatedPlayer = {
-                ...state.multiPlyersScores[playerIndex],
-                moves: state.multiPlyersScores[playerIndex].moves + 1,
-            };
-            const updatedPlayersScores = [...state.multiPlyersScores];
-            updatedPlayersScores[playerIndex] = updatedPlayer;
+  updateMultiPlayerMoves: (playerNo: number) => {
+    set((state) => {
+      const playerIndex = playerNo - 1;
+      const updatedPlayer = {
+        ...state.multiPlayersScores[playerIndex],
+        moves: state.multiPlayersScores[playerIndex].moves + 1,
+      };
+      const updatedPlayersScores = [...state.multiPlayersScores];
+      updatedPlayersScores[playerIndex] = updatedPlayer;
 
-            return {
-                multiPlyersScores: updatedPlayersScores,
-            };
-        });
-    },
-    updateMultiPlyerPairsScore: (playerNo: number) => {
-        set((state) => {
-            const playerIndex = playerNo - 1;
-            const updatedPlayer = {
-                ...state.multiPlyersScores[playerIndex],
-                pairs: state.multiPlyersScores[playerIndex].pairs + 1,
-            };
-            const updatedPlayersScores = [...state.multiPlyersScores];
-            updatedPlayersScores[playerIndex] = updatedPlayer;
+      return {
+        multiPlayersScores: updatedPlayersScores,
+      };
+    });
+  },
+  updateMultiPlayerPairsScore: (playerNo: number) => {
+    set((state) => {
+      const playerIndex = playerNo - 1;
+      const updatedPlayer = {
+        ...state.multiPlayersScores[playerIndex],
+        pairs: state.multiPlayersScores[playerIndex].pairs + 1,
+      };
+      const updatedPlayersScores = [...state.multiPlayersScores];
+      updatedPlayersScores[playerIndex] = updatedPlayer;
 
-            return {
-                multiPlyersScores: updatedPlayersScores,
-            };
-        });
-    },
-    setShowResultWindow: (val: boolean) => {
-        set(() => ({
-            showResultWindow: val,
-        }));
-    },
-    getMultiPlayerRoundResults: () => {
-        let multiPlyersScore: PlyerScores[] = [];
+      return {
+        multiPlayersScores: updatedPlayersScores,
+      };
+    });
+  },
+  setShowResultWindow: (val: boolean) => {
+    set(() => ({
+      showResultWindow: val,
+    }));
+  },
+  getMultiPlayerRoundResults: () => {
+    let multiPlayersScore: PlayerScores[] = [];
 
-        set((state) => {
-            multiPlyersScore = state.multiPlyersScores;
-            return {};
-        });
-        const winners: number[] = [];
-        let maxScore = -1;
-        for (let i = 0; i < multiPlyersScore.length; i++) {
-            maxScore = Math.max(maxScore, multiPlyersScore[i].pairs);
-        }
-        for (let i = 0; i < multiPlyersScore.length; i++) {
-            if (multiPlyersScore[i].pairs === maxScore) {
-                winners.push(multiPlyersScore[i].playerNo);
-            }
-        }
-        return {
-            winners: winners,
-            multiPlyersScores: multiPlyersScore.sort((a, b) => b.pairs - a.pairs),
-        };
-    },
+    set((state) => {
+      multiPlayersScore = state.multiPlayersScores;
+      return {};
+    });
+    const winners: number[] = [];
+    let maxScore = -1;
+    for (let i = 0; i < multiPlayersScore.length; i++) {
+      maxScore = Math.max(maxScore, multiPlayersScore[i].pairs);
+    }
+    for (let i = 0; i < multiPlayersScore.length; i++) {
+      if (multiPlayersScore[i].pairs === maxScore) {
+        winners.push(multiPlayersScore[i].playerNo);
+      }
+    }
+    return {
+      winners: winners,
+      multiPlayersScores: multiPlayersScore.sort((a, b) => b.pairs - a.pairs),
+    };
+  },
 }));
 
 export default useRoundData;

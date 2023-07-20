@@ -1,31 +1,31 @@
 *,
 *::before,
 *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 html {
-    font-size: 100%;
-    scroll-behavior: smooth;
+  font-size: 100%;
+  scroll-behavior: smooth;
 }
 
 ul {
-    list-style: none;
+  list-style: none;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 button {
-    font-family: inherit;
-    border: none;
-    background: none;
-    cursor: pointer;
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 
 input {
-    font-family: inherit;
+  font-family: inherit;
 }

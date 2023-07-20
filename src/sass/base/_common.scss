@@ -1,104 +1,104 @@
 @use '../abstracts' as *;
 
 body {
-    font-family: 'Atkinson Hyperlegible', sans-serif;
+  font-family: 'Atkinson Hyperlegible', sans-serif;
 }
 
 h1,
 h2,
 h3 {
-    color: var(--main-cl-4);
-    font-weight: 700;
+  color: var(--main-cl-4);
+  font-weight: 700;
 }
 
 h1 {
-    font-size: rem(48);
+  font-size: rem(48);
 }
 
 h2 {
-    font-size: rem(32);
+  font-size: rem(32);
 }
 
 h1 {
-    font-size: rem(20);
+  font-size: rem(20);
 }
 
 ///////////////////
 ////  BUTTONS   ///
 ///////////////////
 .btn {
-    text-align: center;
-    font-weight: 700;
-    transition: all 0.3s;
-    color: var(--sub-cl-1);
-    border-radius: 2.1875rem;
+  text-align: center;
+  font-weight: 700;
+  transition: all 0.3s;
+  color: var(--sub-cl-1);
+  border-radius: 2.1875rem;
+  width: 100%;
+
+  // Large
+  &.xl {
+    height: 3rem;
+    background-color: var(--main-cl-1);
+    font-size: 1.125rem;
+    &:hover {
+      background-color: var(--main-cl-hv);
+    }
+    @include mq(md) {
+      font-size: 2rem;
+      height: 4.375rem;
+    }
+  }
+  // Medium
+  &.md {
     width: 100%;
-
-    // Large
-    &.xl {
-        height: 3rem;
-        background-color: var(--main-cl-1);
-        font-size: 1.125rem;
-        &:hover {
-            background-color: var(--main-cl-hv);
-        }
-        @include mq(md) {
-            font-size: 2rem;
-            height: 4.375rem;
-        }
+    height: 2.5rem;
+    background-color: var(--main-cl-2);
+    font-size: 1rem;
+    &:hover {
+      background-color: var(--sub-cl-4);
     }
-    // Medium
-    &.md {
-        width: 100%;
-        height: 2.5rem;
-        background-color: var(--main-cl-2);
-        font-size: 1rem;
-        &:hover {
-            background-color: var(--sub-cl-4);
-        }
-        @include mq(md) {
-            font-size: 1.625rem;
-            height: 3.25rem;
-        }
+    @include mq(md) {
+      font-size: 1.625rem;
+      height: 3.25rem;
     }
+  }
 
-    &.md.active {
-        background-color: var(--main-cl-3);
+  &.md.active {
+    background-color: var(--main-cl-3);
+  }
+
+  // Small
+  &.sm {
+    padding: 0.8rem 1.75rem;
+    font-size: 1rem;
+    width: fit-content;
+    @include mq(md) {
+      font-size: 1.25rem;
+    }
+    &.primary {
+      background-color: var(--main-cl-1);
+      &:hover {
+        background-color: var(--main-cl-hv);
+      }
     }
 
-    // Small
-    &.sm {
-        padding: 0.8rem 1.75rem;
-        font-size: 1rem;
-        width: fit-content;
-        @include mq(md) {
-            font-size: 1.25rem;
-        }
-        &.primary {
-            background-color: var(--main-cl-1);
-            &:hover {
-                background-color: var(--main-cl-hv);
-            }
-        }
-
-        &.secondary {
-            background-color: var(--main-cl-2);
-            color: var(--main-cl-4);
-            &:hover {
-                color: var(-- --sub-cl-4);
-            }
-        }
+    &.secondary {
+      background-color: var(--main-cl-2);
+      color: var(--main-cl-4);
+      &:hover {
+        color: var(-- --sub-cl-4);
+      }
     }
+  }
 }
 ///////////////////
 ////  CONTAINER   ///
 ///////////////////
 .container {
-    width: min(100%, 70rem);
-    padding-inline: 1rem;
-    height: 100%;
-    margin-inline: auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  width: min(100%, 70rem);
+  padding-inline: 1rem;
+  height: 100%;
+  margin-inline: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
