@@ -1,3 +1,4 @@
+import './GamePage.scss';
 import SoloRoundFooter from './layout/SoloRoundFooter';
 import MultiRoundFooter from './layout/MultiRoundFooter';
 import GamePageHeader from './layout/GamePageHeader';
@@ -11,7 +12,7 @@ function GamePage() {
   const { gameIsFinished } = useRoundData();
 
   return (
-    <div className="game-page" style={{ height: '100vh', paddingBottom: '60px' }}>
+    <div className="game-page">
       {gameIsFinished && <ResultWindow />}
       <div className="container">
         <GamePageHeader />
