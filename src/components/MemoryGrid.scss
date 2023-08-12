@@ -35,13 +35,13 @@
     // transition: all 0.8s ease-out;
 
     &.size__16 {
-      width: 4.53313rem;
-      height: 4.53313rem;
+      width: 5rem;
+      height: 5rem;
     }
 
     &.size__36 {
-      width: 2.92988rem;
-      height: 2.92988rem;
+      width: 3.2rem;
+      height: 3.2rem;
     }
     @keyframes correct-answer {
       0%,
@@ -100,13 +100,13 @@
     @include mq(md) {
       font-size: 2.5rem;
       &.size__16 {
-        width: 7.375rem;
-        height: 7.375rem;
+        width: 7rem;
+        height: 7rem;
       }
 
       &.size__36 {
-        width: 5.125rem;
-        height: 5.125rem;
+        width: 5.5rem;
+        height: 5.5rem;
       }
     }
   }
